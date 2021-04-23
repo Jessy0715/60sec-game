@@ -1,0 +1,303 @@
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+:root {
+  --font: 'Roboto Condensed', sans-serif;
+  --color: #FF9D00;
+}
+
+body, html {
+  background-color: var(--color);
+  font-family: var(--font);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+button {
+  background-color: #000;
+  color: var(--color);
+  font-size: 36px;
+  cursor: pointer;
+  padding: 5px 110px;
+  border: 1px solid #000;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+button:hover {
+  background-color: #FFF;
+  color: var(--color);
+  border: 1px solid var(--color);
+}
+
+#app {
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+#app.fadeOut {
+  opacity: 0;
+}
+
+.view1 {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.view1 main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 70px;
+}
+
+.view1__title {
+  color: #FFF;
+  font-size: 240px;
+  text-shadow: 12px 0 0 black;
+}
+
+.view1__subTitle {
+  font-size: 96px;
+  font-weight: bold;
+}
+
+.view1__subTitle sup {
+  color: #FFF;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 1.5;
+  border-bottom: 10px double #FFF;
+  float: right;
+}
+
+.view1__state {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.view1__state p {
+  color: #FFF;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.view2 {
+  width: 65vw;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+}
+
+.view2 main {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0 100px 0;
+}
+
+.view2__title {
+  color: #FFF;
+  font-size: 30px;
+  border: 4px solid #FFF;
+  padding: 10px;
+}
+
+.view2__score {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.view2__score > div {
+  display: inline;
+}
+
+.view2__score > div:first-child {
+  color: var(--color);
+  font-size: 30px;
+  font-weight: bold;
+  min-height: 44px;
+  background-color: #FFF;
+  padding: 10px 10px;
+  margin-right: 10px;
+}
+
+.view2__score > div:last-child {
+  color: #000;
+  font-size: 44px;
+  font-weight: bold;
+}
+
+.view2__time {
+  color: #FFF;
+  font-size: 96px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.view2__cal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 112px;
+  font-weight: bold;
+}
+
+.view2__cal__item {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.view2 .num {
+  color: #000;
+}
+
+.view2 .compute {
+  color: #FFF;
+}
+
+.view2 .ans {
+  min-width: 255px;
+  min-height: 131px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.view2 .ans input {
+  width: 255px;
+  height: 131px;
+  border: 0;
+  outline: none;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.view2 .ans > div {
+  width: 255px;
+  height: 131px;
+  color: #000;
+  background-color: #FFF;
+}
+
+.view2 .ans p {
+  display: inline-block;
+  color: #FFF;
+  font-size: 17px;
+  font-style: italic;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0 0 0;
+}
+
+.view3 main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0 70px 0;
+}
+
+.view3__title {
+  color: #FFF;
+  font-size: 30px;
+  border: 4px solid #FFF;
+  padding: 10px;
+  margin: 0 0 20px 0;
+}
+
+.view3__subTitle {
+  color: #000;
+  font-size: 56px;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+}
+
+.view3__subTitle span {
+  color: #FFF;
+}
+
+.view3__score {
+  color: #000;
+  font-size: 112px;
+  font-size: bold;
+}
+
+.view3__state {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+/*# sourceMappingURL=60sec-game.css.map */
