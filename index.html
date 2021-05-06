@@ -147,12 +147,12 @@
                     }, 1000);
                 },
 
-                // validateQ: function(){
-                //     while ((this.correctAns*100)%1 !== 0 || this.num2 === 0){
-                //         this.num1 = Math.floor(Math.random() * Math.pow(10, this.mode));
-                //         this.num2 = Math.floor(Math.random() * Math.pow(10, this.mode));
-                //     }
-                // },
+                validateQ: function(){
+                    while ((this.correctAns*100)%1 !== 0 || this.num2 === 0){
+                        this.num1 = Math.floor(Math.random() * Math.pow(10, this.mode));
+                        this.num2 = Math.floor(Math.random() * Math.pow(10, this.mode));
+                    }
+                },
 
                 //產生新問題，觸發時機: 使用者送出答案時(submit)
                 newQ: function() {
@@ -182,7 +182,7 @@
                             break;
                         case 3:
                             this.op = '÷';
-                            // this.validateQ();
+                            this.validateQ();
                             break;
                     }
                 },
@@ -292,6 +292,9 @@
             },
             mounted: function() {
                 document.addEventListener("keyup", this.shiftView);
+            },
+            destroyed: function() {
+                document.removeEventListener("keyup", this.shiftView);
             }
         });
     </script>
