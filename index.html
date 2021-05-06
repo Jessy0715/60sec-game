@@ -23,7 +23,7 @@
     透過鍵盤轉場 keyup
 -->
 <body>
-    <div id="app" @keydown="keydown()" @keyup="keyup()" :class="{'fadeOut':fadeOut}" >
+    <div id="app" :class="{'fadeOut':fadeOut}" >
         
         <!-- START PAGE -->
         <section class="view1" id="view-1" v-show="view === 0">
@@ -58,8 +58,8 @@
                     <div class="num" id="num2">{{ num2 }}</div>
                     <div class="compute eq" id="eq">=</div>
                     <div class="ans" id="ans">
-                        <div>{{ inputAns }}</div>
-                        <!-- <input type="number"> -->
+                        <!-- <div>{{ inputAns }}</div> -->
+                        <input type="number" v-model="input" @keyup.enter="submit()">
                         <P>press enter to answer</P>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                 num1: 0,
                 num2: 2,
                 op: '+',
-                input: [],
+                input: '',
                 score: 0,
                 countUp: 0,
                 fadeOut: false,
@@ -111,21 +111,23 @@
             methods: {
 
                 //轉場畫面，觸發時機: 按下button
-                shiftView: function() {
-                    this.fadeOut = true;
-                    setTimeout( () => {
-                        this.fadeOut = false;
+                shiftView: function(e) {
+                    if (e.keyCode == 13 ) {
+                        this.fadeOut = true;
+                        setTimeout( () => {
+                            this.fadeOut = false;
 
-                        //view 0 的時候，點按轉成 view 1; view 2的時候，點案轉成 view 0
-                        this.view = (this.view + 1)%3;
+                            //view 0 的時候，點按轉成 view 1; view 2的時候，點案轉成 view 0
+                            this.view = (this.view + 1)%3;
 
-                        if ( this.view === 0 ) {
-                            console.log('轉場到最初畫面');
-                        }
-                        if ( this.view === 1) {
-                            this.startGame();
-                        }
-                    },500)
+                            if ( this.view === 0 ) {
+                                console.log('轉場到最初畫面');
+                            }
+                            if ( this.view === 1) {
+                                this.startGame();
+                            }
+                        },500)
+                    }
                 },
 
                 //開始遊戲，觸發時機: 轉場畫面時(shiftView); 60秒結束再轉場，再建立新題目
@@ -184,18 +186,17 @@
                             break;
                     }
                 },
-
                 //提交答案，觸發時機: 按下enter時(keydown)
                 submit: function() {
 
                     //答錯: 扣 1分，最低 0 分
-                    if ( this.inputAns == '' || this.inputAns != this.rightAns ) {
+                    if ( this.input == '' || this.input != this.rightAns ) {
                         this.score--;
                         if (this.score < 0 ) {
                             this.score = 0;
                         }
                     //答對: mode1、2，加 1分; mode3，加 5分
-                    } else if ( this.inputAns == this.rightAns ) {
+                    } else if ( this.input == this.rightAns ) {
                         if ( this.mode !== 3) {
                             this.score += 1;
                         }
@@ -207,39 +208,38 @@
                     this.input = [];
                     this.newQ();
                 },
-
                 //使用者送出答案
-                keydown: function() {
-                    if ( this.view === 1 ) {
-                        switch (event.key) {
-                            case '0':
-                            case '1':
-                            case '2':
-                            case '3':
-                            case '4':
-                            case '5':
-                            case '6':
-                            case '7':
-                            case '8':
-                            case '9':
-                            case '.':
-                            case '-':
-                                this.input.push(event.key);
-                                // console.log(event.key);
-                                break;
-                            case 'Backspace':
-                                this.input.pop();
-                                // console.log(event.key);
-                                break;
-                            case 'Enter':
-                                this.submit();
-                                // console.log(event.key);
-                                break;
-                        }
-                    } else {
+                // keydown: function() {
+                //     if ( this.view === 1 ) {
+                //         switch (event.key) {
+                //             case '0':
+                //             case '1':
+                //             case '2':
+                //             case '3':
+                //             case '4':
+                //             case '5':
+                //             case '6':
+                //             case '7':
+                //             case '8':
+                //             case '9':
+                //             case '.':
+                //             case '-':
+                //                 this.input.push(event.key);
+                //                 // console.log(this.input);
+                //                 break;
+                //             case 'Backspace':
+                //                 this.input.pop();
+                //                 // console.log(event.key);
+                //                 break;
+                //             case 'Enter':
+                //                 this.submit();
+                //                 // console.log(event.key);
+                //                 break;
+                //         }
+                //     } else {
 
-                    }
-                },
+                //     }
+                // },
 
                 //畫面1與畫面3，鍵盤轉場
                 keyup: function(event) {
@@ -290,6 +290,9 @@
                     return eval(this.num1 + operator +  this.num2)
                 }
             },
+            mounted: function() {
+                document.addEventListener("keyup", this.shiftView);
+            }
         });
     </script>
 </body>
